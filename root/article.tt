@@ -1,0 +1,10 @@
+<html>
+    <head>
+        <title>[% story.title %]</title>
+    </head>
+    <body>
+    <h1>[% story.title %]</h1>
+    <h2>[% story.teaser %]</h2>
+    [% story.textWithHtml %]
+    </body>
+</html>
