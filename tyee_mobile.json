@@ -1,0 +1,7 @@
+{
+    "name": "Tyee::Mobile",
+    "sections":
+        [ { "name": "Today's features", "url": "/ArtsAndCulture/" },
+          { "name": "News", "url": "/News" }
+        ], 
+}

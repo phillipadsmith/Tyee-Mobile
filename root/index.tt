@@ -1,11 +1,11 @@
 [% USE Dumper %]
 
 [% IF results %] 
-    [% FOREACH group IN sections.section %]
-        <h2>[% group %]</h2>
+    [% FOREACH section IN sections %]
+        <h2>[% section.name %]</h2>
         <ul>
             [% FOREACH item IN results %]
-                [% IF ( item.group == group ) %]
+                [% IF ( item.group == section.name ) %]
                     <li><a href="[% item.path %]">[% item.title %]</a>
                     </li>
                 [% END %]
@@ -14,9 +14,23 @@
     [% END %]
 [% END %]
 
+<h2>Search</h2>
+
+<h2>Sections</h2>
 <ul>
 [% FOREACH section IN sections.section %]
-    <li>[% section %]</li>
+    <li><a href="[% section.url %]">[% section.name %]</li>
 [% END %]
 </ul>
-[% Dumper.dump_html( category ) %]
+
+<h2>Topics</h2>
+
+<ul>
+[% FOREACH topic IN topics.topic %]
+    <li>[% topic %]</li>
+[% END %]
+</ul>
+
+
+
+[% Dumper.dump_html( sections ) %]

@@ -29,9 +29,11 @@ The root page (/)
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     my $sections = $c->config->{'sections'};
+    my $topics   = $c->config->{'topics'};
     $c->stash(
         results => $c->model('API')->latest_grouped(),
         sections => $sections,
+        topics   => $topics,
         category  => $c->config->{'category'},
         template => 'index.tt',
     );
