@@ -14,23 +14,21 @@
     [% END %]
 [% END %]
 
-<h2>Search</h2>
 
 <h2>Sections</h2>
 <ul>
-[% FOREACH section IN sections.section %]
-    <li><a href="[% section.url %]">[% section.name %]</li>
+[% FOREACH section IN sections %]
+    <li><a href="[% section.url %]">[% section.name %]</a></li>
 [% END %]
 </ul>
 
 <h2>Topics</h2>
-
 <ul>
-[% FOREACH topic IN topics.topic %]
-    <li>[% topic %]</li>
+[% FOREACH topic IN topics %]
+    <li><a href="[% topic.url %]">[% topic.name %]</a></li>
 [% END %]
 </ul>
 
 
 
-[% Dumper.dump_html( sections ) %]
+[% # Dumper.dump_html( topics ) %]

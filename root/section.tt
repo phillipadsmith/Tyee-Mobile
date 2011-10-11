@@ -1,0 +1,17 @@
+[% USE Dumper %]
+
+<h2>
+[% results.0.section %]
+</h2>
+
+[% IF results %] 
+        <ul>
+            [% FOREACH item IN results %]
+                    <li><a href="[% item.path %]">[% item.title %]</a>
+                    </li>
+            [% END %]
+        </ul>
+[% END %]
+
+
+[% # Dumper.dump_html( results  ) %]

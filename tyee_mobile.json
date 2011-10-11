@@ -1,7 +1,39 @@
 {
     "name": "Tyee::Mobile",
     "sections":
-        [ { "name": "Today's features", "url": "/ArtsAndCulture/" },
-          { "name": "News", "url": "/News" }
-        ], 
+        [ { "name": "Today's Features", "url": "" },
+          { "name": "The Hook Blog", "url": "/Blogs/TheHook/" },
+          { "name": "News", "url": "/News/" },
+          { "name": "Opinion", "url": "/Opinion/" },
+          { "name": "Mediacheck", "url": "/Mediacheck/" },
+          { "name": "Arts & Culture", "url": "/ArtsAndCulture/" },
+          { "name": "Books", "url": "/Books/" },
+          { "name": "Life", "url": "/Life/" }
+        ],
+    "topics":
+        [ 
+             { "name": "2010 Olympics", "url": "/Topic/2010Olympics/" },
+             { "name": "Education", "url": "/Topic/Education/" },
+             { "name": "Environment", "url": "/Topic/Environment" },
+             { "name": "Energy", "url": "/Topic/Energy" },
+             { "name": "Federal Election 2011", "url": "/Topic/FedElection2011/" },
+             { "name": "Film", "url": "/Topic/Film/" },
+             { "name": "Food", "url": "/Topic/Food/" },
+             { "name": "Food + Farming", "url": "/Topic/FoodFarming/" },
+             { "name": "Gender + Sexuality", "url": "/Topic/GenderSexuality/" },
+             { "name": "Health", "url": "/Topic/Health/" },
+             { "name": "Housing", "url": "/Topic/Housing/" },
+             { "name": "Labour + Industry", "url": "/Topic/LabourIndustry" },
+             { "name": "Music", "url": "/Topic/Music/" },
+             { "name": "Photo Essays", "url": "/Topic/PhotoEssays/" },
+             { "name": "Podcasts", "url": "/Topic/Podcasts/" },
+             { "name": "Politics", "url": "/Topic/Politics/" },
+             { "name": "Rights + Justice", "url": "/Topic/RightsJustice/" },
+             { "name": "Science + Tech", "url": "/Topic/ScienceTech/" },
+             { "name": "Transportation", "url": "/Topic/Transportation/" },
+             { "name": "Travel", "url": "/Topic/Travel/" },
+             { "name": "Tyee News", "url": "/Topic/TyeeNews/" },
+             { "name": "Urban Design + Architecture", "url": "/Topic/PlanningArch/" },
+             { "name": "Video", "url": "/Topic/Video" }
+        ]
 }

@@ -63,8 +63,23 @@ sub blog :Path :Args(7) {
 
 # /(Section name) (list latest 20 from section name)
 
+sub section :Path :Args(1) {
+    my ( $self, $c, $section ) = @_;
+    $c->stash(
+        results => $c->model('API')->lookup_topic( $section ),
+        template => 'section.tt'
+    )
+}
+
 # /Topcics (list all sections & Topics)
 
+sub topic :Path :Args(2) {
+    my ( $self, $c, $stub, $topic ) = @_;
+    $c->stash(
+        results => $c->model('API')->lookup_topic( $topic ),
+        template => 'section.tt'
+    )
+}
 
 
 =head2 default
