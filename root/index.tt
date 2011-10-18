@@ -1,4 +1,6 @@
-[% USE Dumper %]
+[% INCLUDE header.tt
+   title = 'TheTyee.ca - Mobile'
+%]
 
 [% IF results %] 
     [% FOREACH section IN sections %]
@@ -13,22 +15,27 @@
         </ul>
     [% END %]
 [% END %]
-
-
-<h2>Sections</h2>
-<ul>
-[% FOREACH section IN sections %]
-    <li><a href="[% section.url %]">[% section.name %]</a></li>
-[% END %]
-</ul>
-
-<h2>Topics</h2>
-<ul>
-[% FOREACH topic IN topics %]
-    <li><a href="[% topic.url %]">[% topic.name %]</a></li>
-[% END %]
-</ul>
-
-
-
-[% # Dumper.dump_html( topics ) %]
+        <div id="navigation">
+            <div id="search">
+                <h3>Search</h3>
+                <form id="search" method="post">
+                    <input type="text" />
+                </form>
+            </div>
+            <div id="sections">
+                <h3>Sections</h3>
+                <ul>
+                [% FOREACH section IN sections %]
+                    <li><a href="[% section.url %]">[% section.name %]</a></li>
+                [% END %]
+                </ul>
+                <h3>Topics</h3>
+                <ul>
+                [% FOREACH topic IN topics %]
+                    <li><a href="[% topic.url %]">[% topic.name %]</a></li>
+                [% END %]
+                </ul>
+            </div>
+        </div>
+[% INCLUDE footer.tt
+%]

@@ -1,7 +1,7 @@
 [% USE Dumper %]
 
 <h2>
-[% results.0.section %]
+[% title %]
 </h2>
 
 [% IF results %] 

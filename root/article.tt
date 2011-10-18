@@ -1,10 +1,20 @@
-<html>
-    <head>
-        <title>[% story.title %]</title>
-    </head>
-    <body>
+[% USE Dumper %]
+[% INCLUDE header.tt
+   title   = "$story.title - TheTyee.ca - Mobile"
+   body_id = "story"
+%]
+    <div id="story-content">
     <h1>[% story.title %]</h1>
     <h2>[% story.teaser %]</h2>
+    [% IF story.related_media.0 %]
+        [% FOREACH thumb = story.related_media.0.thumbnails %]
+            [% IF thumb.width == 300 %]
+                <img src="[% thumb.uri %]" width="[% thumb.width %]" height="[% thumb.height %]" alt="[% story.related_media.0.caption %]" />
+            [% END %]
+        [% END %]
+    [% END %]
     [% story.textWithHtml %]
-    </body>
-</html>
+    </div>
+[% INCLUDE footer.tt
+%]
+[% # Dumper.dump_html( story  ) %]

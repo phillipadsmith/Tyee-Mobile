@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>[% title %]</title>
+        <style type="text/css">
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            #header { 
+                background: url('/static/images/header_bg.png'); 
+                text-align: center;
+                padding: 2px 0 2px 0;
+                margin: 0;
+            }
+            #content h2 {
+                text-transform: uppercase;
+                font-family: sans-serif;
+                font-size: medium;
+                background: rgb(240,240,240);
+                border-bottom: 1px solid rgb(200,200,200);
+                padding: 2px 0 2px 10px;
+                margin-top: 0px;
+            }
+            #search h3, #sections h3, #topics h3 {
+                background: rgb(50,50,50);
+                border-bottom: 1px solid rgb(0,0,0);
+                color: white;
+                margin-top: 0;
+                padding: 2px 0 2px 10px;
+                text-transform: uppercase;
+                font-family: sans-serif;
+                font-size: medium; 
+            }
+            #search, #sections, #topics { 
+                background: rgb(240,240,240); 
+                padding: 0 0 10px 0; 
+                margin-bottom: 0;
+            }
+            #search form {
+                padding-left: 10px;
+            }
+            #footer {
+                background: black url('/static/images/mobile-logo-small.png') no-repeat right;
+                padding: 2px;
+                color: white;
+            }
+            #footer a, #footer a.link {
+                color: white;
+                text-decoration: none;
+            }
+            #content a, #content a.link, #navigation a, #navigation a.link {
+                color: rgb(88, 94, 29); 
+            }
+            #story-content {
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body id="[% body_id %]">
+        <div id="header">
+            <a href="/"><img src="/static/images/mobile-logo-small.png" alt="The Tyee" border="0" /></a>
+        </div>
+        <div id="content">
+        [% content %]

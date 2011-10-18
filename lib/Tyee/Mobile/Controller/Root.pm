@@ -67,6 +67,7 @@ sub section :Path :Args(1) {
     my ( $self, $c, $section ) = @_;
     $c->stash(
         results => $c->model('API')->lookup_topic( $section ),
+        title   => $section,
         template => 'section.tt'
     )
 }
@@ -77,6 +78,7 @@ sub topic :Path :Args(2) {
     my ( $self, $c, $stub, $topic ) = @_;
     $c->stash(
         results => $c->model('API')->lookup_topic( $topic ),
+        title   => $topic,
         template => 'section.tt'
     )
 }
