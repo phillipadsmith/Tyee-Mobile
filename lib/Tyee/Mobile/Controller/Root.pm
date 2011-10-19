@@ -66,7 +66,8 @@ sub blog :Path :Args(7) {
 sub section :Path :Args(1) {
     my ( $self, $c, $section ) = @_;
     $c->stash(
-        results => $c->model('API')->lookup_topic( $section ),
+        results  => $c->model('API')->lookup_topic( $section ),
+        title  => $section,
         template => 'section.tt'
     )
 }
@@ -76,7 +77,8 @@ sub section :Path :Args(1) {
 sub topic :Path :Args(2) {
     my ( $self, $c, $stub, $topic ) = @_;
     $c->stash(
-        results => $c->model('API')->lookup_topic( $topic ),
+        results  => $c->model('API')->lookup_topic( $topic ),
+        title    => $topic,
         template => 'section.tt'
     )
 }
