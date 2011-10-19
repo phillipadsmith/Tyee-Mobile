@@ -1,34 +1,40 @@
-[% USE Dumper %]
-
-[% IF results %] 
-    [% FOREACH section IN sections %]
-        <h2>[% section.name %]</h2>
-        <ul>
-            [% FOREACH item IN results %]
-                [% IF ( item.group == section.name ) %]
-                    <li><a href="[% item.path %]">[% item.title %]</a>
-                    </li>
-                [% END %]
+[% INCLUDE header.tt
+   title = 'TheTyee.ca - Mobile'
+%]
+        [% IF results %] 
+            [% FOREACH section IN sections %]
+                <h2>[% section.name %]</h2>
+                <ul>
+                    [% FOREACH item IN results %]
+                        [% IF ( item.group == section.name ) %]
+                            <li><a href="[% item.path %]">[% item.title %]</a>
+                            </li>
+                        [% END %]
+                    [% END %]
+                </ul>
             [% END %]
-        </ul>
-    [% END %]
-[% END %]
-
-
-<h2>Sections</h2>
-<ul>
-[% FOREACH section IN sections %]
-    <li><a href="[% section.name | uri %]">[% section.name %]</a></li>
-[% END %]
-</ul>
-
-<h2>Topics</h2>
-<ul>
-[% FOREACH topic IN topics %]
-    <li><a href="/topic/[% topic.name | uri %]">[% topic.name %]</a></li>
-[% END %]
-</ul>
-
-
-
-[% # Dumper.dump_html( topics ) %]
+        [% END %]
+        <div id="navigation">
+            <div id="search">
+                <h3>Search</h3>
+                <form id="search" method="post">
+                    <input type="text" />
+                </form>
+            </div>
+            <div id="sections">
+                <h3>Sections</h3>
+                <ul>
+                [% FOREACH section IN sections %]
+                    <li><a href="[% section.url %]">[% section.name %]</a></li>
+                [% END %]
+                </ul>
+                <h3>Topics</h3>
+                <ul>
+                [% FOREACH topic IN topics %]
+                    <li><a href="[% topic.url %]">[% topic.name %]</a></li>
+                [% END %]
+                </ul>
+            </div>
+        </div>
+[% INCLUDE footer.tt
+%]
