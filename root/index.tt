@@ -1,5 +1,6 @@
 [% INCLUDE header.tt
    title = 'TheTyee.ca - Mobile'
+   body_id = 'index'
 %]
         [% IF results %] 
             [% FOREACH section IN sections %]
@@ -17,21 +18,22 @@
         <div id="navigation">
             <div id="search">
                 <h3>Search</h3>
-                <form id="search" method="post">
-                    <input type="text" />
+                <form id="search" method="get" action="/search/">
+                    <input type="text" name="query" id="search-query" />
+                    <input type="submit" value="Search" />
                 </form>
             </div>
             <div id="sections">
                 <h3>Sections</h3>
                 <ul>
                 [% FOREACH section IN sections %]
-                    <li><a href="[% section.url %]">[% section.name %]</a></li>
+                    <li><a href="[% section.name | url %]">[% section.name %]</a></li>
                 [% END %]
                 </ul>
                 <h3>Topics</h3>
                 <ul>
                 [% FOREACH topic IN topics %]
-                    <li><a href="[% topic.url %]">[% topic.name %]</a></li>
+                    <li><a href="/Topic/[% topic.name | url %]">[% topic.name %]</a></li>
                 [% END %]
                 </ul>
             </div>

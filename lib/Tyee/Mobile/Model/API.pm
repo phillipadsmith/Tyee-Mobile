@@ -46,6 +46,12 @@ sub lookup_topic {
     return $stories;
 }
 
+sub lookup_query {
+    my ( $self, $query ) = @_; 
+    my $stories = WWW::Tyee::API->get_query( $query );
+    return $stories;
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;

@@ -42,7 +42,7 @@ sub index :Path :Args(0) {
 # /Section/YYYY/MM/DD/Slug/
 sub story :Path :Args(5) {
     my ( $self, $c, $section, $year, $month, $day, $slug ) = @_;
-    my $path = $section . '/' . $year . '/' . $month . '/' . $day . '/' . $slug . '/';
+    my $path = join('/', $section, $year, $month, $day, $slug);
     $c->stash(
         story => $c->model('API')->lookup_story( $path ),
         path    => $path,
@@ -76,6 +76,8 @@ sub section :Path :Args(1) {
 
 sub topic :Path :Args(2) {
     my ( $self, $c, $stub, $topic ) = @_;
+    # TODO
+    # Check if $topic is TheHook. If so, detach to sub blogs
     $c->stash(
         results => $c->model('API')->lookup_topic( $topic ),
         title   => $topic,
@@ -83,6 +85,21 @@ sub topic :Path :Args(2) {
     )
 }
 
+# TODO
+# /Blogs/TheHook Need to handle this ...
+#
+#sub blogs {}
+
+
+sub search :Regex('^search$') {
+    my ( $self, $c ) = @_;
+    my $query = $c->req->param('query');
+    $c->stash(
+        results => $c->model('API')->lookup_query( $query ),
+        title   => $query,
+        template => 'section.tt'
+    )
+}
 
 =head2 default
 
