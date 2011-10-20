@@ -1,6 +1,7 @@
 package Tyee::Mobile::Controller::Root;
 use Moose;
 use namespace::autoclean;
+use List::Util qw( first );
 
 BEGIN { extends 'Catalyst::Controller' }
 
@@ -31,15 +32,15 @@ sub index :Path :Args(0) {
     my $sections = $c->config->{'sections'};
     my $topics   = $c->config->{'topics'};
     $c->stash(
-        results => $c->model('API')->latest_grouped(),
+        results => $c->model('API')->lookup_latest_grouped(),
         sections => $sections,
         topics   => $topics,
-        category  => $c->config->{'category'},
         template => 'index.tt',
     );
 }
 
-# /Section/YYYY/MM/DD/Slug/
+# Story URIs are /Section/YYYY/MM/DD/Slug/
+# TODO Change to a RegEx capture
 sub story :Path :Args(5) {
     my ( $self, $c, $section, $year, $month, $day, $slug ) = @_;
     my $path = join('/', $section, $year, $month, $day, $slug);
@@ -50,7 +51,9 @@ sub story :Path :Args(5) {
     );
 }
 
-# /Blogs/TheHook/Media/2011/09/08/Tyee-App-Canadian-Magazine/
+
+# Blog URIs are /Blogs/TheHook/Media/2011/09/08/Tyee-App-Canadian-Magazine/
+# TODO Change this to a RegEx capture
 sub blog :Path :Args(7) {
     my ( $self, $c, $blogs, $blog, $section, $year, $month, $day, $slug ) = @_;
     my $path = join('/', $blogs, $blog, $section, $year, $month, $day, $slug);
@@ -62,25 +65,30 @@ sub blog :Path :Args(7) {
 }
 
 # /(Section name) (list latest 20 from section name)
-
+# TODO Change this to a RegEx capture
+# Need to capture the section URL and convert to section name lookup
 sub section :Path :Args(1) {
-    my ( $self, $c, $section ) = @_;
+    my ( $self, $c, $section_path ) = @_;
+    my $sections = $c->config->{'sections'};
+    my $section = first { $_->{url} =~ $section_path } @$sections;
     $c->stash(
-        results => $c->model('API')->lookup_topic( $section ),
-        title   => $section,
-        template => 'section.tt'
+        results => $c->model('API')->lookup_topic( $section->{'name'} ),
+        title   => $section->{'name'},
+        template => 'section.tt',
     )
 }
 
 # /Topcics (list all sections & Topics)
 
 sub topic :Path :Args(2) {
-    my ( $self, $c, $stub, $topic ) = @_;
+    my ( $self, $c, $stub, $topic_path ) = @_;
     # TODO
     # Check if $topic is TheHook. If so, detach to sub blogs
+    my $topics = $c->config->{'topics'};
+    my $topic = first { $_->{url} =~ $topic_path } @$topics;
     $c->stash(
-        results => $c->model('API')->lookup_topic( $topic ),
-        title   => $topic,
+        results => $c->model('API')->lookup_topic( $topic->{'name'} ),
+        title   => $topic->{'name'},
         template => 'section.tt'
     )
 }

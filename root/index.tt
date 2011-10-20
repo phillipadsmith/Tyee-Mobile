@@ -1,3 +1,5 @@
+[% USE Dumper %]
+[% # Dumper.dump_html( results, sections ) %] 
 [% INCLUDE header.tt
    title = 'TheTyee.ca - Mobile'
    body_id = 'index'
@@ -27,13 +29,13 @@
                 <h3>Sections</h3>
                 <ul>
                 [% FOREACH section IN sections %]
-                    <li><a href="[% section.name | url %]">[% section.name %]</a></li>
+                    <li><a href="[% section.url | url %]">[% section.name %]</a></li>
                 [% END %]
                 </ul>
                 <h3>Topics</h3>
                 <ul>
                 [% FOREACH topic IN topics %]
-                    <li><a href="/Topic/[% topic.name | url %]">[% topic.name %]</a></li>
+                    <li><a href="[% topic.url | url %]">[% topic.name %]</a></li>
                 [% END %]
                 </ul>
             </div>

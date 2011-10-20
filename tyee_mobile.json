@@ -6,7 +6,7 @@
           { "name": "News", "url": "/News/" },
           { "name": "Opinion", "url": "/Opinion/" },
           { "name": "Mediacheck", "url": "/Mediacheck/" },
-          { "name": "Arts & Culture", "url": "/ArtsAndCulture/" },
+          { "name": "Arts and Culture", "url": "/ArtsAndCulture/" },
           { "name": "Books", "url": "/Books/" },
           { "name": "Life", "url": "/Life/" }
         ],

@@ -24,11 +24,11 @@ it under the same terms as Perl itself.
 =cut
 
 use FindBin;
-use lib "$FindBin::Bin/../../../WWW-Tyee-API/lib";
+use lib "$FindBin::Bin/../../WWW-Tyee-API/lib";
 
 use WWW::Tyee::API; 
 
-sub latest_grouped {
+sub lookup_latest_grouped {
     my ( $self ) = @_;
     my $stories = WWW::Tyee::API->get_latest_grouped();
     return $stories; 
