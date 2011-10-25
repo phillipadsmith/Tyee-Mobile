@@ -2,18 +2,23 @@
 [% INCLUDE header.tt
    title   = "$story.title - TheTyee.ca - Mobile"
    body_id = "story"
+   section = story.section
 %]
-    <div id="story-content">
+    <div id="story-container">
     <h1>[% story.title %]</h1>
     <h2>[% story.teaser %]</h2>
+    <div id="meta">By [% story.byline %], [% date %], [% story.organization %] 
+    </div>
     [% IF story.related_media.0 %]
         [% FOREACH thumb = story.related_media.0.thumbnails %]
             [% IF thumb.width == 300 %]
-                <img src="[% thumb.uri %]" width="[% thumb.width %]" height="[% thumb.height %]" alt="[% story.related_media.0.caption %]" />
+                <div id="article-img" style="width:[% thumb.width %]" ><img src="[% thumb.uri %]" width="[% thumb.width %]" height="[% thumb.height %]" alt="Image for [% story.title %]" /><div id="article-img-caption">[% story.related_media.0.caption %]</div></div>
             [% END %]
         [% END %]
     [% END %]
-    [% story.textWithHtml %]
+        <div id="story-content">
+        [% story.textWithHtml %]
+        </div>
     </div>
 [% INCLUDE footer.tt
 %]

@@ -2,6 +2,8 @@ package Tyee::Mobile::Controller::Root;
 use Moose;
 use namespace::autoclean;
 use List::Util qw( first );
+use DateTime;
+use DateTime::Format::ISO8601;
 
 BEGIN { extends 'Catalyst::Controller' }
 
@@ -44,9 +46,15 @@ sub index :Path :Args(0) {
 sub story :Path :Args(5) {
     my ( $self, $c, $section, $year, $month, $day, $slug ) = @_;
     my $path = join('/', $section, $year, $month, $day, $slug);
+    my $story = $c->model('API')->lookup_story( $path );
+    my $now       = DateTime->now();
+    my $date_obj  = DateTime::Format::ISO8601->parse_datetime( $story->{'storyDate'} );
+    my $date_str  = DateTime->compare( $now, $date_obj) ? 'Today' : join(' ', $date_obj->day, $date_obj->month_abbr, $date_obj->year);
     $c->stash(
-        story => $c->model('API')->lookup_story( $path ),
-        path    => $path,
+        #story => $c->model('API')->lookup_story( $path ),
+        story    => $story,
+        date     => $date_str,
+        path     => $path,
         template => 'article.tt'
     );
 }

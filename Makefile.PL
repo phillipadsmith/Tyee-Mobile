@@ -20,6 +20,8 @@ requires 'Config::General'; # This should reflect the config file format you've 
 requires 'WWW::Tyee::API'; 
 requires 'Template::Toolkit';
 requires 'List::Util';
+requires 'DateTime';
+requires 'DateTime::Format::ISO8601';
 
 test_requires 'Test::More' => '0.88';
 catalyst;
