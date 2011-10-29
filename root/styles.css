@@ -1,0 +1,137 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+a, a.link {
+    text-decoration: none;
+}
+a:hover, a.link:hover {
+    text-decoration: underline;
+}
+#size {
+    font-family: "Lucida Grande","Lucida Sans",Verdana,sans-serif;
+    font-weight: bold;
+}
+#size .small {
+    font-size: .8em;
+}
+#size .default {
+    font-size: 1em;
+}
+#size .big {
+    font-size: 1.1em;
+}
+
+#header { 
+    background: url('/static/images/header_bg.png'); 
+    text-align: center;
+    padding: 2px 0 2px 0;
+    margin: 0;
+}
+body#index #content h2 {
+    background: black;
+    color: white;
+    font-family: sans-serif;
+    font-size: medium;
+    margin-top: 0px;
+    padding: 2px 0 2px 10px;
+    text-transform: uppercase;
+}
+#search h3, #sections h3, #topics h3 {
+    background: rgb(50,50,50);
+    border-bottom: 1px solid rgb(0,0,0);
+    color: white;
+    margin-top: 0;
+    padding: 2px 0 2px 10px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: medium; 
+}
+#search, #sections, #topics { 
+    background: rgb(240,240,240); 
+    padding: 0 0 10px 0; 
+    margin-bottom: 0;
+}
+#search form {
+    text-align: center;
+}
+#search form {
+    padding-left: 10px;
+}
+#footer {
+    /* background: black url('/static/images/mobile-logo-small.png') no-repeat right; */
+    background: black;
+    color: white;
+    font-family: sans-serif;
+    padding: 2px;
+}
+#footer #branding {
+    background: black;
+    padding: 5px;
+}
+#footer a, #footer a.link {
+    color: white;
+    text-decoration: none;
+}
+#footer a:hover, #footer a.link:hover {
+    text-decoration: underline;
+}
+#content a, #content a.link, #navigation a, #navigation a.link {
+    color: rgb(88, 94, 29); 
+}
+#container {
+    padding: 10px;
+}
+body#story h1 {
+    font-style: italic;
+    font-family: Georgia, "Times New Roman", serif;
+}
+body#story h2 {
+    font-family: "Lucida Grande","Lucida Sans",Verdana,sans-serif;
+    color: #333333;
+    font-size: 1em;
+}
+#story-content {
+    color: #444444;
+    font-family: "Lucida Grande","Lucida Sans",Verdana,sans-serif;
+    line-height: 1.4em;
+}
+body#story #meta { 
+    font-style: italic;
+    margin-bottom: 10px;
+}
+body#story #article-img-caption {
+    border-bottom: 1px solid rgb(200,200,200);
+    color: rgb(100,100,100);
+    font-family: "Lucida Grande","Lucida Sans",Verdana,sans-serif;
+    font-size: .9em;
+    padding: 5px 0 5px 0;
+}
+.box {
+    background: rgb(230,230,230);
+}
+.box h4 {
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    padding: 4px;
+}
+.box p {
+    padding: 4px;
+}
+.embedded-media {
+    background: rgb(240,240,240);
+    padding: 4px;
+}
+#section {
+    padding: 5px 0 5px 12px;
+    color: white;
+    background: black;
+    font-family: sans-serif; 
+    text-transform: uppercase;
+    font-size: small;
+}
+#nav-article {
+}
+#nav-article ul {
+}

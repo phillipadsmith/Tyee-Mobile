@@ -1,10 +1,13 @@
         </div> <!-- end #content -->
         <div id="footer">
+
             <ul>
                 <li><a href="#">Full site</a></li>
-                <li><a href="#">Report a problem</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li><a href="mailto:info@thetyee.ca?subject=Mobile%20site%20feedback">Report a problem</a></li>
+                <li><a href="/contact">Contact us</a></li>
+                <li><a href="http://app.thetyee.ca">iPhone/Android user? Try our FREE app.</a>
             </ul>
+            <div id="branding" align="center"><a href="/"><img src="/static/images/mobile-logo-small.png" alt="The Tyee" border="0" /></a></div>
         </div>
     </body>
 </html>

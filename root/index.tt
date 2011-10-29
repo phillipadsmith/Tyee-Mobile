@@ -4,6 +4,7 @@
    title = 'TheTyee.ca - Mobile'
    body_id = 'index'
 %]
+[% INCLUDE search.tt %]
         [% IF results %] 
             [% FOREACH section IN sections %]
                 <h2>[% section.name %]</h2>
@@ -14,17 +15,13 @@
                             </li>
                         [% END %]
                     [% END %]
+                    [% UNLESS section.name == "Today's Features" %]
+                    <li><a href="[% section.url %]">More from [% section.name %]</a></li>
+                    [% END %]
                 </ul>
             [% END %]
         [% END %]
         <div id="navigation">
-            <div id="search">
-                <h3>Search</h3>
-                <form id="search" method="get" action="/search/">
-                    <input type="text" name="query" id="search-query" />
-                    <input type="submit" value="Search" />
-                </form>
-            </div>
             <div id="sections">
                 <h3>Sections</h3>
                 <ul>

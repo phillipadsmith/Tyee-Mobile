@@ -2,9 +2,10 @@
 [% INCLUDE header.tt
    title   = "$story.title - TheTyee.ca - Mobile"
    body_id = "story"
-   section = story.section
+   section = section.name
 %]
-    <div id="story-container">
+    <div id="container">
+    <div id="size">Text size: <span>&nbsp;&nbsp;<span class="small"><a href="?size=small">A</a></span>&nbsp;&nbsp;<span class="default"><a href="?size=">A</a></span>&nbsp;&nbsp;<span class="big"><a href="?size=large">A</a></span><span></div>
     <h1>[% story.title %]</h1>
     <h2>[% story.teaser %]</h2>
     <div id="meta">By [% story.byline %], [% date %], [% story.organization %] 
@@ -18,8 +19,51 @@
     [% END %]
         <div id="story-content">
         [% story.textWithHtml %]
+
+            [% FOREACH url IN story.embedded_media %]
+            <div class="embedded-media">
+                <p><a href="[% url %]">If your phone support video playback, watch the related video.</a></p>
+            </div>
+            [% END %]
+            
+            [% FOREACH fact IN story.fact_box %]
+            <div class="box" id="factboxes">
+                <h4 class="title">[% fact.title %]</h4>
+                [% fact.content %]
+            </div>
+            [% END %]
+
+            <div id="author-info">
+            [% FOREACH author IN story.author_info %] 
+                <div class="author">[% author %]</div>
+            [% END %]
+            </div>
+           
+           [% IF story.related_stories %]
+            <div class="box" id="related-stories">
+                <h4 class="title">Related stories</h4>
+                <ul>
+                    [% FOREACH related IN story.related_stories %]
+                        <li class="related-story">
+                           <a href="[% related.uri %]" title="[% related.teaser | html %]">[% related.title %]</a>
+                        </li>
+                    [% END %]
+                </ul>
+                <br />
+            </div>
+            [% END %]
+
+[% INCLUDE navigation.tt 
+    section = section.name
+    section_url  = section.url
+%]
+
         </div>
     </div>
+[% INCLUDE search.tt %]
 [% INCLUDE footer.tt
+    section = section.name
+    section_url  = section.url
+
 %]
 [% # Dumper.dump_html( story  ) %]
