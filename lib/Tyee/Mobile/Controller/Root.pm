@@ -48,17 +48,16 @@ sub story : Path : Args(5) {
     my $path  = join( '/', $section_path, $year, $month, $day, $slug );
     my $size  = $c->req->param( 'size' ); # Text size
     my $story = $c->model( 'API' )->lookup_story( $path );
-    my $now   = DateTime->now();
-    my $date_obj
+    my $now   = DateTime->today();
+    my $story_date
         = DateTime::Format::ISO8601->parse_datetime( $story->{'storyDate'} );
 
 # Compare two DateTime objects. The semantics are compatible with Perl's sort() function;
 # it returns -1 if $dt1 < $dt2, 0 if $dt1 == $dt2, 1 if $dt1 > $dt2.
-    my $today = DateTime->compare( $now, $date_obj );
     my $date_str
-        = $today == 0
+        = $now->ymd == $story_date->ymd
         ? 'Today'
-        : join( ' ', $date_obj->day, $date_obj->month_abbr, $date_obj->year );
+        : join( ' ', $story_date->day, $story_date->month_abbr, $story_date->year );
 
     # Return the first matching element of a search on the url attribute
     # across the sections array. Used to properly display section names
@@ -75,18 +74,25 @@ sub story : Path : Args(5) {
     );
 }
 
+# TODO
+# /Blogs/TheHook Need to handle this ...
+#
+sub blog : Regex('^Blogs/TheHook$') {
+    my ( $self, $c ) = @_;
+    $c->stash(
+        results  => $c->model( 'API' )->lookup_path( '/Blogs/TheHook' ),
+        title    => 'The Hook Blog',
+        template => 'section.tt',
+    );
+}
+
 # Blog URIs are /Blogs/TheHook/Media/2011/09/08/Tyee-App-Canadian-Magazine/
 # TODO Change this to a RegEx capture
-sub blog : Path : Args(7) {
-    my ( $self, $c, $blogs, $blog, $section, $year, $month, $day, $slug )
+sub blog_post : Path('/Blogs/TheHook') : Args(5) {
+    my ( $self, $c, $section_path, $year, $month, $day, $slug )
         = @_;
-    my $path
-        = join( '/', $blogs, $blog, $section, $year, $month, $day, $slug );
-    $c->stash(
-        story    => $c->model( 'API' )->lookup_story( $path ),
-        path     => $path,
-        template => 'blog.tt'
-    );
+    $c->stash->{'blog'} = 'The Hook Blog: ';
+    $c->forward('story');
 }
 
 # /(Section name) (list latest 20 from section name)
@@ -123,10 +129,6 @@ sub topic : Path : Args(2) {
     );
 }
 
-# TODO
-# /Blogs/TheHook Need to handle this ...
-#
-#sub blogs {}
 
 sub search : Regex('^search$') {
     my ( $self, $c ) = @_;
@@ -134,7 +136,7 @@ sub search : Regex('^search$') {
     $c->stash(
         results  => $c->model( 'API' )->lookup_query( $query ),
         title    => $query,
-        template => 'section.tt'
+        template => 'search_results.tt'
     );
 }
 

@@ -1,0 +1,19 @@
+[% INCLUDE header.tt
+   title = 'TheTyee.ca - Mobile'
+   body_id = 'index'
+%]
+
+<h2>
+Search: [% title %]
+</h2>
+
+[% IF results %] 
+        <ul>
+            [% FOREACH item IN results %]
+                    <li><a href="[% item.path %]">[% item.title %]</a>
+                    </li>
+            [% END %]
+        </ul>
+[% END %]
+[% INCLUDE footer.tt
+%]

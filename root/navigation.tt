@@ -13,7 +13,7 @@
                     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4eac355a7ce42af2"></script>
                     <!-- AddThis Button END -->
                 </li>
-                <li><a href="/" title="Head to the front page">Head over to the front page</a></li>
+                <li><a accesskey="1" href="/" title="Head to the front page">Head over to the front page</a></li>
                 <li><a href="[% section_url %]">Read more [% section %]</a></li>
             </ul>
             <br />

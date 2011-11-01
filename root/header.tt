@@ -13,10 +13,10 @@
     </head>
     <body id="[% body_id %]">
         <div id="header">
-            <a href="/"><img src="/static/images/mobile-logo-small.png" alt="The Tyee" border="0" /></a>
+            <a accesskey="1" href="/"><img src="/static/images/mobile-logo-small.png" alt="The Tyee" border="0" /></a>
         </div>
         [% IF section %]
-        <div id="section">[% section %]</div>
+        <div id="section">[% blog %][% section %]</div>
         [% END %]
         <div id="content">
         [% content %]

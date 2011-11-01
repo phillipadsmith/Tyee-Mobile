@@ -1,7 +1,7 @@
             <div id="search">
                 <h3>Search</h3>
                 <form id="search" method="get" action="/search/">
-                    <input type="text" name="query" id="search-query" />
+                    <input tabindex="1" type="text" name="query" id="search-query" />
                     <input type="submit" value="Search" />
                 </form>
             </div>

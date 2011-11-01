@@ -13,8 +13,47 @@
     [% IF story.related_media.0 %]
         [% FOREACH thumb = story.related_media.0.thumbnails %]
             [% IF thumb.width == 300 %]
-                <div id="article-img" style="width:[% thumb.width %]" ><img src="[% thumb.uri %]" width="[% thumb.width %]" height="[% thumb.height %]" alt="Image for [% story.title %]" /><div id="article-img-caption">[% story.related_media.0.caption %]</div></div>
+                <div id="article-img" style="width:[% thumb.width %]">
+                    <img src="[% thumb.uri %]" width="[% thumb.width %]" height="[% thumb.height %]" alt="Image for [% story.title %]" />
+                    <div id="article-img-caption">
+                    [% IF story.primary_video.0.caption %]
+                        [% story.primary_video.0.caption %] (Watch <a href="[% story.primary_video.0.uri %]">the video</a> if your device supports it)
+                    [% ELSE %]
+                        [% story.related_media.0.caption %]
+                    [% END %]
+
+                    </div>
+                </div>
             [% END %]
+        [% END %]
+    [% END %]
+    [% IF story.book_profile %]
+    <div id="book-profile">
+        [% FOREACH book IN story.book_profile %]
+        <dl class="book">
+            <dt class="title">[% book.title %]</dt>
+                <dd class="author">By [% book.author %]</dd>
+                <dd class="publisher">[% book.publisher %]</dd>
+                [% IF book.num_pages %]
+                <dd class="num-pages">[% book.num_pages %]</dd>
+                [% END %]
+                [% IF book.isbn %]
+                <dd class="isbn">ISBN: [% book.isbn %]</dd>
+                [% END %]
+                [% IF book.buy_link %]
+                <dd class="buy-link"><a href="[% book.buy_link %]" title="Buy [% book.title %]">Buy this book</a></dd>
+                [% END %]
+        </dl>
+        [% END %]
+    </div>
+    [% END %]
+    [% IF story.related_podcast_audio %]
+        [% FOREACH podcast IN story.related_podcast_audio %]
+            <div class="podcast box">
+            <h4 class="title">[% podcast.boxTitle %]</h4>
+            <p>[% podcast.summary %]</p>
+            <p><a href="[% podcast.uri %]">[% podcast.title %]</a>
+            </div>
         [% END %]
     [% END %]
         <div id="story-content">
