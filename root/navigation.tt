@@ -1,6 +1,6 @@
        <div id="nav-article">
             <ul>
-                <li>
+                <li class="addthis">
                     <!-- AddThis Button BEGIN -->
                     <div class="addthis_toolbox addthis_default_style ">
                     <a class="addthis_button_preferred_1"></a>
