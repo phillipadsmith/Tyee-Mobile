@@ -2,7 +2,6 @@
    title = 'TheTyee.ca - Mobile'
    body_id = 'index'
 %]
-
 <h2>
 Search: [% title %]
 </h2>
@@ -15,5 +14,4 @@ Search: [% title %]
             [% END %]
         </ul>
 [% END %]
-[% INCLUDE footer.tt
-%]
+[% INCLUDE footer.tt %]

@@ -7,20 +7,14 @@
         Contact Us
         </h2>
         <p>To contact The Tyee with general inquiries or technical issues, <a href="mailto:info@thetyee.ca">send us an email</a>.</p>
-
         <p>To contact The Tyee editorial department, <a href="mailto:info@thetyee.ca">send us an email</a>.</p>
-
         <p>You can also reach us by regular mail:</p>
-
         <p>
         The Tyee<br />
         PO Box 88484<br />
         Vancouver, BC V6A 4A7
         </p>
-
         <p><a href="/" title="Head to the front page">Head back to the front page</a></p>
-
     </div>
 [% INCLUDE search.tt %]
 [% INCLUDE footer.tt %]
-

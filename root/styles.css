@@ -134,6 +134,13 @@ body#story #article-img-caption {
 .box p {
     padding: 4px;
 }
+
+.box ul {
+    padding-left: 28px; 
+}
+.box ul li {
+    margin-bottom: 10px;
+}
 .embedded-media {
     background: rgb(240,240,240);
     padding: 4px;
@@ -152,6 +159,5 @@ ul.section li { margin-bottom: 10px; }
 body#index ul { padding-left: 28px; }
 
 .addthis_toolbox a { margin-right: 10px; }
-.addthis_button_twitter { margin-left: 10px; }
 
 div.author { font-style: italic; }

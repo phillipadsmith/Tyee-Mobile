@@ -1,4 +1,3 @@
-[% USE Dumper %]
 [% INCLUDE header.tt
    title   = "$story.title - TheTyee.ca - Mobile"
    body_id = "story"
@@ -65,7 +64,7 @@
 
             [% FOREACH url IN story.embedded_media %]
             <div class="embedded-media">
-                <p><a href="[% url %]">If your phone support video playback, watch the related video.</a></p>
+                <p><a href="[% url %]">If your phone supports video playback, watch the related video.</a></p>
             </div>
             [% END %]
             
@@ -109,4 +108,3 @@
     section_url  = section.url
 
 %]
-[% # Dumper.dump_html( story  ) %]

@@ -1,5 +1,3 @@
-[% USE Dumper %]
-[% # Dumper.dump_html( results, sections ) %] 
 [% INCLUDE header.tt
    title = 'TheTyee.ca - Mobile'
    body_id = 'index'
@@ -51,5 +49,4 @@
                 </ul>
             </div>
         </div>
-[% INCLUDE footer.tt
-%]
+[% INCLUDE footer.tt %]
