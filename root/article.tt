@@ -7,7 +7,11 @@
     <div id="container">
     <div id="size">Text size: <span>&nbsp;&nbsp;<span class="small"><a href="?size=small">A</a></span>&nbsp;&nbsp;<span class="default"><a href="?size=">A</a></span>&nbsp;&nbsp;<span class="big"><a href="?size=large">A</a></span><span></div>
     <h1>[% story.title %]</h1>
-    <h2>[% story.teaser %]</h2>
+    <h2>
+    [% UNLESS story.story_type == 'blog_entry' %]
+    [% story.teaser %]
+    [% END %]
+    </h2>
     <div id="meta">By [% story.byline %], [% date %], [% story.organization %] 
     </div>
     [% IF story.related_media.0 %]
