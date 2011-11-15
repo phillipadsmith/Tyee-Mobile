@@ -7,16 +7,28 @@
 [% INCLUDE search.tt %]
         [% IF results %] 
             [% FOREACH section IN sections %]
-                <h2>[% section.name %]</h2>
-                <ul>
+                <h2>
+                [% UNLESS section.name == "Today's Features" %]
+                <a href="[% section.url %]">[% section.name %]</a></h2>
+                [% ELSE %]
+                [% section.name %]
+                [% END %]
+                </h2>
+                <ul class="section">
                     [% FOREACH item IN results %]
                         [% IF ( item.group == section.name ) %]
-                            <li><a href="[% item.path %]">[% item.title %]</a>
+                            [% UNLESS section.name == "The Hook Blog" %]
+                            <li><a class="title" href="[% item.path %]">[% item.title %]</a>
+                            <span class="teaser">[% item.teaser %]</span>
                             </li>
+                            [% ELSE %]
+                            <li><a class="title" href="[% item.path %]">[% item.title %]</a>
+                            </li>
+                            [% END %]
                         [% END %]
                     [% END %]
                     [% UNLESS section.name == "Today's Features" %]
-                    <li><a href="[% section.url %]">More from [% section.name %]</a></li>
+                    <li><a class="title" href="[% section.url %]">More in [% section.name %]</a></li>
                     [% END %]
                 </ul>
             [% END %]

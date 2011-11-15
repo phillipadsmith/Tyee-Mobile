@@ -12,7 +12,7 @@
     </div>
     [% IF story.related_media.0 %]
         [% FOREACH thumb = story.related_media.0.thumbnails %]
-            [% IF thumb.width == 300 %]
+            [% IF thumb.width == 300 && thumb.height == 115 %]
                 <div id="article-img" style="width:[% thumb.width %]">
                     <img src="[% thumb.uri %]" width="[% thumb.width %]" height="[% thumb.height %]" alt="Image for [% story.title %]" />
                     <div id="article-img-caption">

@@ -28,7 +28,7 @@ a:hover, a.link:hover {
     padding: 2px 0 2px 0;
     margin: 0;
 }
-body#index #content h2 {
+body#index #content h2, body#index #content h2 a {
     background: black;
     color: white;
     font-family: sans-serif;
@@ -121,7 +121,9 @@ body#story #article-img-caption {
 }
 
 .box {
-    background: rgb(230,230,230);
+    border-right: 1px solid black;
+    border-left: 1px solid black;    
+    border-bottom: 1px solid black;
 }
 .box h4 {
     background: black;
@@ -144,7 +146,12 @@ body#story #article-img-caption {
     text-transform: uppercase;
     font-size: small;
 }
-#nav-article {
-}
-#nav-article ul {
-}
+ul.section li a.title { font-weight: bold; }
+ul.section li .teaser { color: rgb(100,100,100); }
+ul.section li { margin-bottom: 10px; }
+body#index ul { padding-left: 28px; }
+
+.addthis_toolbox a { margin-right: 10px; }
+.addthis_button_twitter { margin-left: 10px; }
+
+div.author { font-style: italic; }
