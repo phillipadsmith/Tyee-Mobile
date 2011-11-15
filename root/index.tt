@@ -38,7 +38,9 @@
                 <h3>Sections</h3>
                 <ul>
                 [% FOREACH section IN sections %]
+                    [% UNLESS section.name == "Today's Features" %]
                     <li><a href="[% section.url | url %]">[% section.name %]</a></li>
+                    [% END %]
                 [% END %]
                 </ul>
                 <h3>Topics</h3>
