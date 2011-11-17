@@ -2,7 +2,7 @@
         <div id="footer">
 
             <ul>
-                <li><a accesskey="0" href="#">Full site</a></li>
+                <li><a accesskey="0" href="http://preview.thetyee.ca/fullsite/">Full site</a></li>
                 <li><a accesskey="2" href="mailto:info@thetyee.ca?subject=Mobile%20site%20feedback">Report a problem</a></li>
                 <li><a accesskey="3" href="/contact">Contact us</a></li>
                 <li><a href="http://app.thetyee.ca">iPhone/Android user? Try our FREE app.</a>
