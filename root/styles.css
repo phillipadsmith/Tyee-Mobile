@@ -138,6 +138,7 @@ body#story #article-img-caption {
 
 .box ul {
     padding-left: 28px; 
+    padding-right: 4px;
 }
 .box ul li {
     margin-bottom: 10px;
