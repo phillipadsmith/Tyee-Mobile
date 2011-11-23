@@ -9,5 +9,8 @@
             </ul>
             <div id="branding" align="center"><a href="/"><img src="/static/images/mobile-logo-small.png" alt="The Tyee" border="0" /></a></div>
         </div>
+[% PERL %]
+print '<img src="' . google_analytics_get_image_url() . '" />';
+[% END %]
     </body>
 </html>

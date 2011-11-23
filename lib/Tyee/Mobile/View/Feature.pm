@@ -8,6 +8,9 @@ use base 'Catalyst::View::TT';
 __PACKAGE__->config(
     TEMPLATE_EXTENSION => '.tt',
     ENCODING     => 'utf-8',
+    EVAL_PERL    => '1',
+    PRE_CHOMP  => 1,
+    POST_CHOMP => 1,
     render_die => 1,
 );
 
