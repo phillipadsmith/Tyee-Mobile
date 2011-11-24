@@ -9,6 +9,9 @@
         [% END %]
         [% INCLUDE styles.css %]
         </style>
+<link rel="icon" 
+      type="image/png" 
+      href="/static/images/favicon.png">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <script>
         var metas = document.getElementsByTagName('meta');
