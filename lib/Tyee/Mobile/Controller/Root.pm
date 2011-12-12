@@ -55,7 +55,7 @@ sub story : Path : Args(5) {
 # Compare two DateTime objects. The semantics are compatible with Perl's sort() function;
 # it returns -1 if $dt1 < $dt2, 0 if $dt1 == $dt2, 1 if $dt1 > $dt2.
     my $date_str
-        = $now->ymd == $story_date->ymd
+        = $now->ymd eq $story_date->ymd
         ? 'Today'
         : join( ' ', $story_date->day, $story_date->month_abbr, $story_date->year );
 
