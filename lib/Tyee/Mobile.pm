@@ -21,6 +21,7 @@ use Catalyst qw/
     ConfigLoader
     Static::Simple
     Unicode::Encoding
+    CustomErrorMessage
 /;
 
 extends 'Catalyst';
@@ -41,6 +42,12 @@ __PACKAGE__->config(
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
 );
+# optional (values in this example are the defaults)
+__PACKAGE__->config->{'custom-error-message'}->{'uri-for-not-found'} = '/';
+__PACKAGE__->config->{'custom-error-message'}->{'error-template'}    = 'error.tt';
+__PACKAGE__->config->{'custom-error-message'}->{'content-type'}      = 'text/html; charset=utf-8';
+__PACKAGE__->config->{'custom-error-message'}->{'view-name'}         = 'Feature';
+__PACKAGE__->config->{'custom-error-message'}->{'response-status'}   = 500;
 
 # Start the application
 __PACKAGE__->setup();

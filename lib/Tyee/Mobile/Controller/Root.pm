@@ -7,11 +7,15 @@ use DateTime::Format::ISO8601;
 
 BEGIN { extends 'Catalyst::Controller' }
 
+use constant SECTIONS => __PACKAGE__->config->{'sections'};
+use constant TOPICS   => __PACKAGE__->config->{'topics'};
+
 #
 # Sets the actions in this controller to be registered with no prefix
 # so they function identically to actions created in MyApp.pm
 #
 __PACKAGE__->config( namespace => '' );
+
 
 =head1 NAME
 
@@ -115,7 +119,7 @@ sub section : Path : Args(1) {
 
 # /Topcics (list all sections & Topics)
 
-sub topic : Path : Args(2) {
+sub topic : Path('/Topic/') : Args(1) {
     my ( $self, $c, $stub, $topic_path ) = @_;
 
     # TODO
@@ -155,8 +159,10 @@ Standard 404 error page
 
 sub default : Path {
     my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
     $c->response->status( 404 );
+    $c->stash(
+        template => '404.tt'
+    );
 }
 
 =head2 end
