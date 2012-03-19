@@ -7,15 +7,37 @@ use DateTime::Format::ISO8601;
 
 BEGIN { extends 'Catalyst::Controller' }
 
-use constant SECTIONS => __PACKAGE__->config->{'sections'};
-use constant TOPICS   => __PACKAGE__->config->{'topics'};
-
-#
 # Sets the actions in this controller to be registered with no prefix
 # so they function identically to actions created in MyApp.pm
 #
 __PACKAGE__->config( namespace => '' );
 
+has topics => ( isa => 'ArrayRef', is => 'ro', required => 1 );
+has topics_by_name => (
+    isa     => 'HashRef',
+    lazy    => 1,
+    default => sub {
+        my $names = {
+            map { $_->{'name'} => $_ } @{ shift()->topics }
+        };
+        return $names;
+    },
+    traits  => ['Hash'],
+    handles => { lookup_topic_by_name => 'get' }
+);
+has sections => ( isa => 'ArrayRef', is => 'ro', required => 1 );
+has sections_by_name => (
+    isa     => 'HashRef',
+    lazy    => 1,
+    default => sub {
+        my $names = {
+            map { $_->{'name'} => $_ } @{ shift()->sections }
+        };
+        return $names;
+    },
+    traits  => ['Hash'],
+    handles => { lookup_section_by_name => 'get' }
+);
 
 =head1 NAME
 
@@ -35,22 +57,20 @@ The root page (/)
 
 sub index : Path : Args(0) {
     my ( $self, $c ) = @_;
-    my $sections = $c->config->{'sections'};
-    my $topics   = $c->config->{'topics'};
     $c->stash(
         results  => $c->model( 'API' )->lookup_latest_grouped(),
-        sections => $sections,
-        topics   => $topics,
+        sections => $self->sections,
+        topics   => $self->topics,
         template => 'index.tt',
     );
 }
 
 # Story URIs are /Section/YYYY/MM/DD/Slug/
-# TODO Change to a RegEx capture
+# TODO Change to a Chained capture
 sub story : Path : Args(5) {
     my ( $self, $c, $section_path, $year, $month, $day, $slug ) = @_;
-    my $path  = join( '/', $section_path, $year, $month, $day, $slug );
-    my $size  = $c->req->param( 'size' ); # Text size
+    my $path = join( '/', $section_path, $year, $month, $day, $slug );
+    my $size  = $c->req->param( 'size' );                    # Text size
     my $story = $c->model( 'API' )->lookup_story( $path );
     my $now   = DateTime->today();
     my $story_date
@@ -61,12 +81,13 @@ sub story : Path : Args(5) {
     my $date_str
         = $now->ymd eq $story_date->ymd
         ? 'Today'
-        : join( ' ', $story_date->day, $story_date->month_abbr, $story_date->year );
+        : join( ' ',
+        $story_date->day, $story_date->month_abbr, $story_date->year );
 
     # Return the first matching element of a search on the url attribute
     # across the sections array. Used to properly display section names
     # in the section overview pages.
-    my $sections = $c->config->{'sections'};
+    my $sections = $self->sections;
     my $section = first { $_->{url} =~ $section_path } @$sections;
     $c->stash(
         story    => $story,
@@ -78,9 +99,7 @@ sub story : Path : Args(5) {
     );
 }
 
-# TODO
-# /Blogs/TheHook Need to handle this ...
-#
+# TODO Change to a Chained capture
 sub blog : Regex('^Blogs/TheHook$') {
     my ( $self, $c ) = @_;
     $c->stash(
@@ -91,25 +110,27 @@ sub blog : Regex('^Blogs/TheHook$') {
 }
 
 # Blog URIs are /Blogs/TheHook/Media/2011/09/08/Tyee-App-Canadian-Magazine/
-# TODO Change this to a RegEx capture
+# TODO Change this to a Chained capture
+# TODO Also, the section name doesn't make it to story {}. Need to fix.
 sub blog_post : Path('/Blogs/TheHook') : Args(5) {
-    my ( $self, $c, $section_path, $year, $month, $day, $slug )
-        = @_;
+    my ( $self, $c, $section_path, $year, $month, $day, $slug ) = @_;
+    my $section = $self->lookup_section_by_name( 'The Hook Blog' );
     $c->stash->{'blog'} = 'The Hook Blog: ';
-    $c->forward('story');
+    $c->forward( 'story' );
 }
 
 # /(Section name) (list latest 20 from section name)
-# TODO Change this to a RegEx capture
-# Need to capture the section URL and convert to section name lookup
-sub section : Path : Args(1) {
-    my ( $self, $c, $section_path ) = @_;
+sub section : Chained('/') : PathPart('') : CaptureArgs(1) {
+    my ( $self, $c, $section_name ) = @_;
+    my $section = $self->lookup_section_by_name( $section_name )
+        || $c->detach( 'default' );
+    $c->stash( section => $section );
+}
 
-    # Return the first matching element of a search on the url attribute
-    # across the sections array. Used to properly display section names
-    # in the section overview pages.
-    my $sections = $c->config->{'sections'};
-    my $section = first { $_->{url} =~ $section_path } @$sections;
+sub show : Chained('section') : PathPart('') : Args(0) { 
+    my ( $self, $c ) = @_;
+    my $section = $c->stash->{'section'};
+    $c->stash->{'section'} = ''; # Clearning this out, b/c the template shows it.
     $c->stash(
         results  => $c->model( 'API' )->lookup_topic( $section->{'name'} ),
         title    => $section->{'name'},
@@ -117,14 +138,13 @@ sub section : Path : Args(1) {
     );
 }
 
-# /Topcics (list all sections & Topics)
-
+# /Topics (list all sections & Topics)
 sub topic : Path('/Topic/') : Args(1) {
     my ( $self, $c, $stub, $topic_path ) = @_;
 
     # TODO
     # Check if $topic is TheHook. If so, detach to sub blogs
-    my $topics = $c->config->{'topics'};
+    my $topics = $self->topics;
     my $topic = first { $_->{url} =~ $topic_path } @$topics;
     $c->stash(
         results  => $c->model( 'API' )->lookup_topic( $topic->{'name'} ),
@@ -133,7 +153,7 @@ sub topic : Path('/Topic/') : Args(1) {
     );
 }
 
-
+# TODO Change to Path route, not Regex
 sub search : Regex('^search$') {
     my ( $self, $c ) = @_;
     my $query = $c->req->param( 'query' );
@@ -146,9 +166,7 @@ sub search : Regex('^search$') {
 
 sub contact : Path('/contact') : Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash(
-        template => 'contact.tt'
-    );
+    $c->stash( template => 'contact.tt' );
 }
 
 =head2 default
@@ -161,7 +179,8 @@ sub default : Path {
     my ( $self, $c ) = @_;
     $c->response->status( 404 );
     $c->stash(
-        template => '404.tt'
+        url      => $c->req->path,
+        template => '404.tt' 
     );
 }
 

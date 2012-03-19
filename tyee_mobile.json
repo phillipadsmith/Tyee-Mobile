@@ -1,16 +1,7 @@
 {
     "name": "Tyee::Mobile",
-    "sections":
-        [ { "name": "Today's Features", "url": "" },
-          { "name": "The Hook Blog", "url": "/Blogs/TheHook/" },
-          { "name": "News", "url": "/News/" },
-          { "name": "Opinion", "url": "/Opinion/" },
-          { "name": "Mediacheck", "url": "/Mediacheck/" },
-          { "name": "Arts and Culture", "url": "/ArtsAndCulture/" },
-          { "name": "Books", "url": "/Books/" },
-          { "name": "Life", "url": "/Life/" }
-        ],
-    "topics":
+    "Controller::Root": {
+        "topics":
         [ 
              { "name": "2010 Olympics", "url": "/Topic/2010Olympics/" },
              { "name": "Education", "url": "/Topic/Education/" },
@@ -35,5 +26,17 @@
              { "name": "Tyee News", "url": "/Topic/TyeeNews/" },
              { "name": "Urban Design + Architecture", "url": "/Topic/PlanningArch/" },
              { "name": "Video", "url": "/Topic/Video" }
+        ],
+        "sections":
+        [ 
+              { "name": "Today's Features", "url": "" },
+              { "name": "The Hook Blog", "url": "/Blogs/TheHook/" },
+              { "name": "News", "url": "/News/" },
+              { "name": "Opinion", "url": "/Opinion/" },
+              { "name": "Mediacheck", "url": "/Mediacheck/" },
+              { "name": "Arts and Culture", "url": "/ArtsAndCulture/" },
+              { "name": "Books", "url": "/Books/" },
+              { "name": "Life", "url": "/Life/" }
         ]
+    }
 }
