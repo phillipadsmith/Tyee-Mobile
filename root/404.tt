@@ -1,11 +1,16 @@
-  <style>
-  body { font-size: 300%; padding: 40px; }
-  </style>
-
-  <div class="container">
-    <h1>Not found <span>:(</span></h1>
-    <p>That page doesn’t exist in The Tyee mobile site.</p>
-    <p><a href="http://thetyee.ca/[% url %]?fullsite">Click here</a> to view it on our full site.</p>
-    <p>If that doesn’t work, it could be a mis-typed URL, an expired page, or the one that got away.</p>
-    <img src="/static/images/upside_down_fish.jpg" />
-  </div>
+<html>
+    <head>
+        <title>Page not found</title>
+        <link rel="icon" type="image/png" href="/static/images/favicon.png">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Not found <span>:(</span></h1>
+            <p>That page doesn’t exist in The Tyee mobile site.</p>
+            <p><a href="http://thetyee.ca/[% url %]?fullsite">Click here</a> to view it on our full site.</p>
+            <p>If that doesn’t work, it could be a mis-typed URL, an expired page, or the one that got away.</p>
+            <div align="center"><img src="/static/images/upside_down_fish.jpg"  /></div>
+        </div>
+    </body>
+</html>
