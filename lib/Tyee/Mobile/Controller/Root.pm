@@ -139,8 +139,8 @@ sub show : Chained('section') : PathPart('') : Args(0) {
 }
 
 # /Topics (list all sections & Topics)
-sub topic : Path('/Topic/') : Args(1) {
-    my ( $self, $c, $stub, $topic_path ) = @_;
+sub topic : Path('/Topic') : Args(1) {
+    my ( $self, $c, $topic_path ) = @_;
 
     # TODO
     # Check if $topic is TheHook. If so, detach to sub blogs
