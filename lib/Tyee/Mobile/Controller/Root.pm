@@ -69,7 +69,15 @@ sub index : Path : Args(0) {
 # TODO Change to a Chained capture
 sub story : Path : Args(5) {
     my ( $self, $c, $section_path, $year, $month, $day, $slug ) = @_;
-    my $path = join( '/', $section_path, $year, $month, $day, $slug );
+    my $path;
+    # TODO Basically, the URI for blogs is now missing a section
+    # So I have to shift around the arguments to make the API lookup work
+    # This sucks, but it works for the moment
+    if ( $slug ) {
+        $path = join( '/', $section_path, $year, $month, $day, $slug );
+    } else { # This is shit, but it'll make things work for now
+        $path = join( '/', 'Blogs/TheHook', $section_path, $year, $month, $day );
+    }
     my $size  = $c->req->param( 'size' );                    # Text size
     my $story = $c->model( 'API' )->lookup_story( $path );
     my $now   = DateTime->today();
@@ -98,26 +106,28 @@ sub story : Path : Args(5) {
         template => 'article.tt'
     );
 }
+# Blog URIs are /Blogs/TheHook/Media/2011/09/08/Tyee-App-Canadian-Magazine/
+# TODO Change this to a Chained capture
+# TODO Also, the section name doesn't make it to story {}. Need to fix.
+# TODO More importantly, when we re-launched The Hook with a newe URI format
+# we broke this route. Need a better fix, but -- for now -- hacking story works
+sub blog_post : Path('/Blogs/TheHook') : Args(4) {
+    my ( $self, $c, $year, $month, $day, $slug ) = @_;
+    my $section = $self->lookup_section_by_name( 'The Hook Blog' );
+    $c->stash->{'blog'} = 'The Hook Blog: ';
+    $c->forward( 'story' );
+}
 
 # TODO Change to a Chained capture
 sub blog : Regex('^Blogs/TheHook$') {
     my ( $self, $c ) = @_;
     $c->stash(
-        results  => $c->model( 'API' )->lookup_path( '/Blogs/TheHook' ),
+        results  => $c->model( 'API' )->lookup_latest_blogs,
         title    => 'The Hook Blog',
         template => 'section.tt',
     );
 }
 
-# Blog URIs are /Blogs/TheHook/Media/2011/09/08/Tyee-App-Canadian-Magazine/
-# TODO Change this to a Chained capture
-# TODO Also, the section name doesn't make it to story {}. Need to fix.
-sub blog_post : Path('/Blogs/TheHook') : Args(5) {
-    my ( $self, $c, $section_path, $year, $month, $day, $slug ) = @_;
-    my $section = $self->lookup_section_by_name( 'The Hook Blog' );
-    $c->stash->{'blog'} = 'The Hook Blog: ';
-    $c->forward( 'story' );
-}
 
 # /(Section name) (list latest 20 from section name)
 sub section : Chained('/') : PathPart('') : CaptureArgs(1) {

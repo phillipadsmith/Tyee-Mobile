@@ -34,6 +34,12 @@ sub lookup_latest_grouped {
     return $stories; 
 }
 
+sub lookup_latest_blogs {
+    my ( $self ) = @_;
+    my $stories = WWW::Tyee::API->get_latest_blogs();
+    return $stories; 
+}
+
 sub lookup_story {
     my ( $self, $uri ) = @_;
     my $story = WWW::Tyee::API->get_story( $uri );
