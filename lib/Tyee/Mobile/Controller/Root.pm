@@ -118,6 +118,14 @@ sub blog_post : Path('/Blogs/TheHook') : Args(4) {
     $c->forward( 'story' );
 }
 
+# Quick fix to handle old-style blog posts
+sub blog_post_old : Path('/Blogs/TheHook') : Args(5) {
+    my ( $self, $c, $section_path, $year, $month, $day, $slug ) = @_;
+    my $section = $self->lookup_section_by_name( 'The Hook Blog' );
+    $c->stash->{'blog'} = 'The Hook Blog: ';
+    $c->forward( 'story' );
+}
+
 # TODO Change to a Chained capture
 sub blog : Regex('^Blogs/TheHook$') {
     my ( $self, $c ) = @_;
