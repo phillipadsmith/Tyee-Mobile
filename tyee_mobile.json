@@ -34,9 +34,9 @@
               { "name": "News", "url": "/News/" },
               { "name": "Opinion", "url": "/Opinion/" },
               { "name": "Mediacheck", "url": "/Mediacheck/" },
-              { "name": "Arts and Culture", "url": "/ArtsAndCulture/" },
-              { "name": "Books", "url": "/Books/" },
-              { "name": "Life", "url": "/Life/" }
+              { "name": "Culture", "url": "/Culture/" },
+              { "name": "National", "url": "/National/" },
+              { "name": "Solutions", "url": "/Solutions/" }
         ]
     }
 }
