@@ -3,11 +3,13 @@
     "Controller::Root": {
         "topics":
         [ 
-             { "name": "2010 Olympics", "url": "/Topic/2010Olympics/" },
+             { "name": "Aboriginal Affairs", "url": "/Topic/Aboriginal-Affairs/" },
+             { "name": "BC Election 2013", "url": "/Topic/BC_Election_2013/" },
+             { "name": "BC Politics", "url": "/Topic/BC-Politics" },
              { "name": "Education", "url": "/Topic/Education/" },
-             { "name": "Environment", "url": "/Topic/Environment" },
              { "name": "Energy", "url": "/Topic/Energy" },
-             { "name": "Federal Election 2011", "url": "/Topic/FedElection2011/" },
+             { "name": "Environment", "url": "/Topic/Environment" },
+             { "name": "Federal Politics", "url": "/Topic/Federal-Politics" },
              { "name": "Film", "url": "/Topic/Film/" },
              { "name": "Food", "url": "/Topic/Food/" },
              { "name": "Food + Farming", "url": "/Topic/FoodFarming/" },
@@ -15,6 +17,9 @@
              { "name": "Health", "url": "/Topic/Health/" },
              { "name": "Housing", "url": "/Topic/Housing/" },
              { "name": "Labour + Industry", "url": "/Topic/LabourIndustry" },
+             { "name": "Local Economy", "url": "/Topic/Local-Economy" },
+             { "name": "Media", "url": "/Topic/Media/" },
+             { "name": "Municipal Politics", "url": "/Topic/Municipal-Politics/" },
              { "name": "Music", "url": "/Topic/Music/" },
              { "name": "Photo Essays", "url": "/Topic/PhotoEssays/" },
              { "name": "Podcasts", "url": "/Topic/Podcasts/" },
@@ -23,19 +28,17 @@
              { "name": "Science + Tech", "url": "/Topic/ScienceTech/" },
              { "name": "Transportation", "url": "/Topic/Transportation/" },
              { "name": "Travel", "url": "/Topic/Travel/" },
-             { "name": "Tyee News", "url": "/Topic/TyeeNews/" },
              { "name": "Urban Design + Architecture", "url": "/Topic/PlanningArch/" },
-             { "name": "Video", "url": "/Topic/Video" }
         ],
         "sections":
         [ 
               { "name": "Today's Features", "url": "" },
               { "name": "The Hook Blog", "url": "/Blogs/TheHook/" },
               { "name": "News", "url": "/News/" },
-              { "name": "Opinion", "url": "/Opinion/" },
-              { "name": "Mediacheck", "url": "/Mediacheck/" },
               { "name": "Culture", "url": "/Culture/" },
+              { "name": "Opinion", "url": "/Opinion/" },
               { "name": "National", "url": "/National/" },
+              { "name": "Mediacheck", "url": "/Mediacheck/" },
               { "name": "Solutions", "url": "/Solutions/" }
         ]
     }
