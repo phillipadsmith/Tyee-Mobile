@@ -15,14 +15,8 @@
                 <ul class="section">
                     [% FOREACH item IN results %]
                         [% IF ( item.group == section.name ) %]
-                            [% UNLESS section.name == "The Hook Blog" %]
-                            <li><a class="title" href="[% item.path %]">[% item.title %]</a>
-                            <span class="teaser">[% item.teaser %]</span>
-                            </li>
-                            [% ELSE %]
                             <li><a class="title" href="[% item.path %]">[% item.title %]</a>
                             </li>
-                            [% END %]
                         [% END %]
                     [% END %]
                     [% UNLESS section.name == "Today's Features" %]

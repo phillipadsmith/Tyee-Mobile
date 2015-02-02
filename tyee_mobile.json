@@ -33,7 +33,6 @@
         "sections":
         [ 
               { "name": "Today's Features", "url": "" },
-              { "name": "The Hook Blog", "url": "/Blogs/TheHook/" },
               { "name": "News", "url": "/News/" },
               { "name": "Culture", "url": "/Culture/" },
               { "name": "Opinion", "url": "/Opinion/" },
