@@ -9,7 +9,5 @@
             </ul>
             <div id="branding" align="center"><a href="/"><img src="/static/images/mobile-logo-small.png" alt="The Tyee" border="0" /></a></div>
         </div>
-[% USE Math %]
-    <img src="/ga.pl?utmac=MO-169022-1&utmn=[% Math.int(Math.rand(100000)) %]&utmr=[% "" == c.req.referer ? "-" : c.req.referer %]&utmp=[% c.req.path %]&guid=ON" />
     </body>
 </html>
